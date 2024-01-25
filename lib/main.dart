@@ -1,11 +1,22 @@
+import 'package:castleworld/common/routers/app_pages.dart';
+import 'package:castleworld/common/routers/app_routes.dart';
 import 'package:castleworld/pages/app_home/app_home.dart';
+import 'package:castleworld/pages/login/login.dart';
 import 'package:castleworld/pages/product_detail/product_detail.dart';
 import 'package:flutter/services.dart';
 import 'package:castleworld/pages/product_detail/product_detail.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+
+import 'common/services/http_service.dart';
+import 'common/services/user_service.dart';
+import 'common/util/storage.dart';
+import 'global.dart';
+import 'pages/search/search.dart';
 
 void main() {
+  Global.init();
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
     statusBarColor: Colors.transparent,
   ));
@@ -18,7 +29,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ScreenUtil.init(context, designSize: const Size(375, 812));
-    return MaterialApp(
+    return GetMaterialApp(
       title: '城堡世界',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF0E8AFD)),
@@ -29,7 +40,9 @@ class MyApp extends StatelessWidget {
             unselectedLabelStyle: TextStyle(fontSize: 9)),
         useMaterial3: true,
       ),
-      home: AppHome(),
+      initialRoute: AppRoutes.main,
+      getPages: AppPages.routes,
+      // home: AppHome(),
     );
   }
 }

@@ -2,8 +2,10 @@ import 'dart:ui';
 
 import 'package:castleworld/config/Utils.dart';
 import 'package:castleworld/pages/product_detail/product_detail.dart';
+import 'package:easy_refresh/easy_refresh.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 
 import '../widgits/marque_widget.dart';
 
@@ -16,7 +18,7 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   List<DycModel> dms = [];
-
+  final EasyRefreshController controller = EasyRefreshController();
   @override
   void initState() {
     dms = List.generate(120, (index) {
@@ -32,92 +34,101 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
-      body: CustomScrollView(
-        slivers: [
-          _buildSliverAppBar(),
-          buildTap1(size),
-          buildTap2(),
-          buildDyc(),
-          buildHot(),
-          SliverPadding(
-            sliver: SliverGrid(
-                delegate: SliverChildBuilderDelegate(
-                  (BuildContext context, int index) {
-                    return InkWell(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const ProductDetail()),
-                        );
-                      },
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(16),
-                            child: Image.network(
-                              'https://img2.baidu.com/it/u=1711066208,576917554&fm=253&fmt=auto&app=138&f=JPEG?w=667&h=500',
-                              width: double.infinity,
-                              height: 168,
-                              fit: BoxFit.fill,
-                            ),
-                          ),
-                          const Padding(
-                            padding: EdgeInsets.symmetric(vertical: 6),
-                            child: Text(
-                              '城堡世界卡城堡世界卡城 堡世界卡城堡世界',
-                              maxLines: 2,
-                              overflow: TextOverflow.ellipsis,
-                              style: TextStyle(
-                                color: Color(0xff333333),
-                                height: 1.4,
-                                fontSize: 14,
+      body: EasyRefresh(
+        controller: controller,
+        header: CupertinoHeader(
+          position: IndicatorPosition.locator,
+          triggerOffset: 40,
+        ),
+        footer: CupertinoFooter(
+          position: IndicatorPosition.locator,
+          triggerOffset: 40,
+        ),
+        child: CustomScrollView(
+          slivers: [
+            _buildSliverAppBar(),
+            buildTap1(size),
+            buildTap2(),
+            buildDyc(),
+            buildHot(),
+            SliverPadding(
+              sliver: SliverGrid(
+                  delegate: SliverChildBuilderDelegate(
+                    (BuildContext context, int index) {
+                      return InkWell(
+                        onTap: () {
+                          Get.to(ProductDetail());
+                        },
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(16),
+                              child: Image.network(
+                                'https://img2.baidu.com/it/u=1711066208,576917554&fm=253&fmt=auto&app=138&f=JPEG?w=667&h=500',
+                                width: double.infinity,
+                                height: 168,
+                                fit: BoxFit.fill,
                               ),
                             ),
-                          ),
-                          Row(
-                            children: [
-                              RichText(
-                                  text: const TextSpan(
-                                      text: '¥',
-                                      style: TextStyle(
-                                          color: Color(0xffFF3B3B),
-                                          fontSize: 12),
-                                      children: [
-                                    TextSpan(
-                                      text: '170.00',
-                                      style: TextStyle(
-                                          color: Color(0xffFF3B3B),
-                                          fontSize: 24,
-                                          height: .9),
-                                    )
-                                  ])),
-                              const SizedBox(
-                                width: 4,
+                            Padding(
+                              padding: EdgeInsets.symmetric(vertical: 6),
+                              child: Text(
+                                '城堡世界卡城堡世界卡城 堡世界卡城堡世界',
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
+                                style: TextStyle(
+                                  color: Color(0xff333333),
+                                  height: 1.4,
+                                  fontSize: 14,
+                                ),
                               ),
-                              Image.asset(
-                                getImgPath('ic_home_sk'),
-                                height: 14,
-                                fit: BoxFit.fitHeight,
-                              )
-                            ],
-                          )
-                        ],
-                      ),
-                    );
-                  },
-                  childCount: 10,
-                ),
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  mainAxisExtent: 245,
-                  mainAxisSpacing: 12,
-                  crossAxisSpacing: 11,
-                  crossAxisCount: 2,
-                )),
-            padding: const EdgeInsets.only(left: 14, right: 14, top: 10, bottom: 30),
-          )
-        ],
+                            ),
+                            Row(
+                              children: [
+                                RichText(
+                                    text: TextSpan(
+                                        text: '¥',
+                                        style: TextStyle(
+                                            color: Color(0xffFF3B3B),
+                                            fontSize: 12),
+                                        children: [
+                                      TextSpan(
+                                        text: '170.00',
+                                        style: TextStyle(
+                                            color: Color(0xffFF3B3B),
+                                            fontSize: 24,
+                                            height: .9),
+                                      )
+                                    ])),
+                                SizedBox(
+                                  width: 4,
+                                ),
+                                Image.asset(
+                                  getImgPath('ic_home_sk'),
+                                  height: 14,
+                                  fit: BoxFit.fitHeight,
+                                )
+                              ],
+                            )
+                          ],
+                        ),
+                      );
+                    },
+                    childCount: 10,
+                  ),
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    mainAxisExtent: 245,
+                    mainAxisSpacing: 12,
+                    crossAxisSpacing: 11,
+                    crossAxisCount: 2,
+                  )),
+              padding:
+                  EdgeInsets.only(left: 14, right: 14, top: 10, bottom: 30),
+            ),
+            const FooterLocator.sliver(),
+          ],
+        ),
       ),
     );
   }
@@ -158,14 +169,16 @@ class _HomeState extends State<Home> {
         width: double.infinity,
         height: 120.h,
         padding: EdgeInsets.only(top: 5.h),
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(colors: [
-            Color(0xff9FFFFC),
-            Color(0xff9FFFFC),
-            Color(0xffD59FFF),
-            Color(0xff9FFFFC),
-          ]),
-        ),
+        decoration: BoxDecoration(
+            image: DecorationImage(
+                image: AssetImage(getImgPath('bg_home_dyc')), fit: BoxFit.fill)
+            // gradient: LinearGradient(colors: [
+            //   Color(0xff9FFFFC),
+            //   Color(0xff9FFFFC),
+            //   Color(0xffD59FFF),
+            //   Color(0xff9FFFFC),
+            // ]),
+            ),
         child: Stack(
           children: [
             Container(
@@ -220,7 +233,7 @@ class _HomeState extends State<Home> {
                 left: 0,
                 top: 15,
                 child: Image.asset(
-                  getImgPath('bg_home_dyc'),
+                  getImgPath('ic_home_dyc_bg'),
                   width: 45,
                   fit: BoxFit.fitWidth,
                 )),
@@ -359,7 +372,7 @@ class _HomeState extends State<Home> {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   Container(
-                    width: ((size.width / 2)) / 2,
+                    width: ((size.width / 2)) / 2 - 3,
                     height: 165.h / 2 - 5,
                     padding: EdgeInsets.only(left: 16.w, top: 7.h),
                     decoration: BoxDecoration(
@@ -377,7 +390,7 @@ class _HomeState extends State<Home> {
                     ),
                   ),
                   Container(
-                    width: ((size.width / 2)) / 2,
+                    width: ((size.width / 2)) / 2 - 3,
                     height: 165.h / 2 - 5,
                     padding: EdgeInsets.only(left: 16.w, top: 7.h),
                     decoration: BoxDecoration(
