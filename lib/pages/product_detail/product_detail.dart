@@ -1,3 +1,4 @@
+import 'package:castleworld/pages/product_detail/contact_store_manager.dart';
 import 'package:flutter/material.dart';
 
 class ProductDetail extends StatefulWidget {
@@ -165,11 +166,14 @@ class _ProductDetailState extends State<ProductDetail> {
 
   Widget buyPopup() {
     return Container(
-      height: 450,
+      height: 400 + MediaQuery.of(context).padding.bottom,
       width: double.infinity,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(30),
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(30),
+          topRight: Radius.circular(30),
+        ),
       ),
       child: Column(
         children: [
@@ -418,23 +422,34 @@ class _ProductDetailState extends State<ProductDetail> {
                         fontWeight: FontWeight.bold),
                   ),
                 ),
-                Container(
-                  alignment: Alignment.center,
-                  width: 246,
-                  height: 54,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(19),
-                    gradient: const LinearGradient(colors: [
-                      Color(0xFF027FFD),
-                      Color(0xFF77EDFF),
-                    ], begin: Alignment.topLeft, end: Alignment.bottomRight),
-                  ),
-                  child: const Text(
-                    "联系店长购买",
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold),
+                InkWell(
+                  onTap: () {
+                    showModalBottomSheet(
+                      context: context,
+                      isScrollControlled: true,
+                      builder: (BuildContext context) {
+                        return const ContactStoreManager();
+                      },
+                    );
+                  },
+                  child: Container(
+                    alignment: Alignment.center,
+                    width: MediaQuery.of(context).size.width - 180,
+                    height: 54,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(19),
+                      gradient: const LinearGradient(colors: [
+                        Color(0xFF027FFD),
+                        Color(0xFF77EDFF),
+                      ], begin: Alignment.topLeft, end: Alignment.bottomRight),
+                    ),
+                    child: const Text(
+                      "联系店长购买",
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold),
+                    ),
                   ),
                 ),
               ],
@@ -459,8 +474,8 @@ class _ProductDetailState extends State<ProductDetail> {
                 children: [
                   Image.asset(
                     "assets/images/bg_detail_banner.png",
-                    width: double.infinity,
-                    height: 375,
+                    width: MediaQuery.of(context).size.width,
+                    height: MediaQuery.of(context).size.height * 0.46,
                     fit: BoxFit.cover,
                   ),
                   const SizedBox(height: 13),
@@ -584,7 +599,11 @@ class _ProductDetailState extends State<ProductDetail> {
             bottom: 0,
             left: 0,
             right: 0,
-            child: bottomRow(),
+            child: Container(
+              color: Colors.white,
+              padding: const EdgeInsets.only(bottom: 10),
+              child: bottomRow(),
+            ),
           )
         ],
       ),
