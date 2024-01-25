@@ -5,7 +5,11 @@ import 'package:castleworld/pages/product_detail/product_detail.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import 'common/util/storage.dart';
+import 'pages/search/search.dart';
+
 void main() {
+  Storage().init();
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
     statusBarColor: Colors.transparent,
   ));
