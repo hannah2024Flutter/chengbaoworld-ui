@@ -1,6 +1,7 @@
 import 'package:castleworld/pages/app_home/app_home.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:castleworld/pages/product_detail/product_detail.dart';
+import 'package:flutter/material.dart';
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(

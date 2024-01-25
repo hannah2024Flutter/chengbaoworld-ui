@@ -47,135 +47,123 @@ class _HomeState extends State<Home> {
 
   SliverToBoxAdapter buildTap1(Size size) {
     return SliverToBoxAdapter(
-      child: Container(
-        width: double.infinity,
-        height: 165,
-        margin: const EdgeInsets.only(left: 14, right: 14, top: 16, bottom: 10),
-        child: Stack(
-          children: [
-            Positioned(
-              top: 0,
-              bottom: 0,
-              left: 0,
-              child: Container(
-                padding: EdgeInsets.only(left: 14, top: 16),
-                width: (size.width / 2) - 14,
-                decoration: BoxDecoration(
-                    image: DecorationImage(
-                        image: AssetImage(getImgPath('ic_home_tap_1')),
-                        fit: BoxFit.fill)),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      '购买闪卡',
-                      style: TextStyle(
-                          fontFamily: 'yf',
-                          fontSize: 30,
-                          height: 1.2,
-                          color: Colors.white,
-                          fontWeight: FontWeight.w400),
-                    ),
-                    SizedBox(
-                      height: 5,
-                    ),
-                    Text(
-                      '开启城堡',
-                      style: TextStyle(
-                          fontSize: 12,
-                          height: 1.3,
-                          color: Colors.white,
-                          fontWeight: FontWeight.w500),
-                    ),
-                  ],
-                ),
-              ),
-              // child: Image.asset(getImgPath('ic_home_tap_1'),
-              //   width: (size.width/2)-14-1.5,
-              //   fit: BoxFit.fill,
-              // ),
-            ),
-            Positioned(
-              top: 0,
-              right: 0,
-              child: Container(
-                width: (size.width / 2) - 14 - 1.5,
-                height: 165 / 2 - 5,
-                padding: EdgeInsets.only(left: 17, top: 10),
-                decoration: BoxDecoration(
-                    image: DecorationImage(
-                        image: AssetImage(
-                          getImgPath('ic_home_tap_2'),
-                        ),
-                        fit: BoxFit.fill)),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      '应用大厅',
-                      style: TextStyle(
-                          fontSize: 24,
-                          fontFamily: 'yf',
-                          color: Colors.white,
-                          height: 1.1),
-                    ),
-                    SizedBox(
-                      height: 4,
-                    ),
-                    Text(
-                      '这是一段副文案',
-                      style: TextStyle(
-                          fontSize: 12, color: Colors.white, height: 1.2),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            Positioned(
-              bottom: 0,
-              right: 0,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Container(
-                    width: ((size.width / 2)) / 2,
-                    height: 165 / 2 - 5,
-                    padding: EdgeInsets.only(left: 16, top: 7),
+          child: Container(
+            width: double.infinity,
+            height: 165,
+            margin: const EdgeInsets.only(
+                left: 14, right: 14, top: 16, bottom: 10),
+            child: Stack(
+              children: [
+                Positioned(
+                  top: 0,
+                  bottom: 0,
+                  left: 0,
+                  child: Container(
+                    padding: EdgeInsets.only(left: 14,top: 16),
+                    width: (size.width / 2) - 14,
                     decoration: BoxDecoration(
                         image: DecorationImage(
+                            image: AssetImage(getImgPath('ic_home_tap_1')),
+                            fit: BoxFit.fill)),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          '购买闪卡',
+                          style: TextStyle(
+                              fontFamily: 'yf',
+                              fontSize: 30,
+                              height: 1.2,
+                              color: Colors.white,
+                              fontWeight: FontWeight.w400),
+                        ),
+                        SizedBox(height: 5,),
+                        Text(
+                          '开启城堡',
+                          style: TextStyle(
+
+                              fontSize: 12,
+                              height: 1.3,
+                              color: Colors.white,
+                              fontWeight: FontWeight.w500),
+                        ),
+                      ],
+                    ),
+                  ),
+                  // child: Image.asset(getImgPath('ic_home_tap_1'),
+                  //   width: (size.width/2)-14-1.5,
+                  //   fit: BoxFit.fill,
+                  // ),
+                ),
+                Positioned(
+                  top: 0,
+                  right: 0,
+                  child: Container(
+                      width: (size.width / 2) - 14 - 1.5,
+                      height: 165 / 2 - 5,
+                    padding: EdgeInsets.only(left: 17,top: 10),
+                    decoration: BoxDecoration(
+                      image: DecorationImage(image: AssetImage(
+                        getImgPath('ic_home_tap_2'),
+                      ),fit: BoxFit.fill
+                      )
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text('应用大厅',style: TextStyle(fontSize: 24,fontFamily: 'yf',color: Colors.white,height: 1.1),),
+                        SizedBox(height: 4,),
+                        Text('这是一段副文案',style: TextStyle(fontSize: 12,color: Colors.white,height: 1.2),),
+
+                      ],
+                    ),
+                  ),
+
+                ),
+                Positioned(
+                  bottom: 0,
+                  right: 0,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Container(
+                        width: ((size.width / 2)) / 2,
+                        height: 165 / 2 - 5,
+                        padding: EdgeInsets.only(left: 16,top: 7),
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
                             image: AssetImage(
                               getImgPath('ic_home_tap_3'),
                             ),
-                            fit: BoxFit.fill)),
-                    child: Text(
-                      '规则',
-                      style: TextStyle(
-                          fontFamily: 'yf', fontSize: 24, color: Colors.white),
-                    ),
+                            fit: BoxFit.fill
+                          )
+                        ),
+                        child: Text('规则',style: TextStyle(fontFamily: 'yf',fontSize: 24,color: Colors.white),),
+                      ),
+                      Container(
+                        width: ((size.width / 2)) / 2,
+                        height: 165 / 2 - 5,
+                        padding: EdgeInsets.only(left: 16,top: 7),
+                        decoration: BoxDecoration(
+                            image: DecorationImage(
+                                image: AssetImage(
+                                  getImgPath('ic_home_tap_4'),
+                                ),
+                                fit: BoxFit.fill
+                            )
+                        ),
+                        child: Text('说明',style: TextStyle(fontFamily: 'yf',fontSize: 24,color: Colors.white),),
+                      ),
+
+
+                    ],
                   ),
-                  Container(
-                    width: ((size.width / 2)) / 2,
-                    height: 165 / 2 - 5,
-                    padding: EdgeInsets.only(left: 16, top: 7),
-                    decoration: BoxDecoration(
-                        image: DecorationImage(
-                            image: AssetImage(
-                              getImgPath('ic_home_tap_4'),
-                            ),
-                            fit: BoxFit.fill)),
-                    child: Text(
-                      '说明',
-                      style: TextStyle(
-                          fontFamily: 'yf', fontSize: 24, color: Colors.white),
-                    ),
-                  ),
-                ],
-              ),
+                ),
+
+              ],
             ),
-          ],
-        ),
-      ),
-    );
+          ),
+        );
   }
 
   SliverAppBar _buildSliverAppBar() {
