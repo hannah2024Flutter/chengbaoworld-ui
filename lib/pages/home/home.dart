@@ -125,7 +125,6 @@ class _HomeState extends State<Home> {
             ),
             child: Stack(
               children: [
-
                 Container(
                   width: double.infinity,
                   height: 120,
