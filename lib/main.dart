@@ -1,4 +1,5 @@
 import 'package:castleworld/pages/app_home/app_home.dart';
+import 'package:castleworld/pages/login/login.dart';
 import 'package:castleworld/pages/product_detail/product_detail.dart';
 import 'package:flutter/services.dart';
 import 'package:castleworld/pages/product_detail/product_detail.dart';
@@ -29,7 +30,7 @@ class MyApp extends StatelessWidget {
             unselectedLabelStyle: TextStyle(fontSize: 9)),
         useMaterial3: true,
       ),
-      home: AppHome(),
+      home: Login(),
     );
   }
 }
