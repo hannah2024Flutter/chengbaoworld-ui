@@ -1,7 +1,9 @@
 import 'package:castleworld/pages/app_home/app_home.dart';
 import 'package:castleworld/pages/product_detail/product_detail.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:castleworld/pages/product_detail/product_detail.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
@@ -15,6 +17,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ScreenUtil.init(context, designSize: const Size(375, 812));
     return MaterialApp(
       title: '城堡世界',
       theme: ThemeData(
@@ -26,7 +29,7 @@ class MyApp extends StatelessWidget {
             unselectedLabelStyle: TextStyle(fontSize: 9)),
         useMaterial3: true,
       ),
-      home: ProductDetail(),
+      home: AppHome(),
     );
   }
 }
