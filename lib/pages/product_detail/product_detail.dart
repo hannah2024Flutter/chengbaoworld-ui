@@ -81,7 +81,7 @@ class _ProductDetailState extends State<ProductDetail> {
 
   Widget buttonComponent(String text, Color start, Color end) {
     return Container(
-      width: (MediaQuery.of(context).size.width - 100)/2,   
+      width: (MediaQuery.of(context).size.width - 100) / 2,
       height: 44,
       alignment: Alignment.center,
       decoration: BoxDecoration(
@@ -110,7 +110,7 @@ class _ProductDetailState extends State<ProductDetail> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            margin: const EdgeInsets.only(left: 30,top: 5),
+            margin: const EdgeInsets.only(left: 30, top: 5),
             child: Column(
               children: [
                 Image.asset(
