@@ -1,10 +1,12 @@
 import 'dart:io';
 
+import 'package:castleworld/common/routers/app_routes.dart';
 import 'package:castleworld/common/services/user_service.dart';
 import 'package:dio/dio.dart';
 import 'package:get/get.dart' hide Response, FormData, MultipartFile;
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
+import '../config/constants.dart';
 import '../model/api_resp.dart';
 
 class HttpService extends GetxService {
@@ -155,54 +157,54 @@ class RequestInterceptors extends Interceptor {
   // 退出并重新登录
   Future<void> _errorNoAuthLogout() async {
     await UserService.to.logout();
-    Get.toNamed(RouteNames.main);
+    Get.toNamed(AppRoutes.main);
   }
 
   // 如果 401 错误直接去登录页
   // 打印错误信息给用户 Loading.error(errorMessage.message);
-  @override
-  Future<void> onError(
-      DioException err, ErrorInterceptorHandler handler) async {
-    final exception = HttpException(err.message ?? "error message");
-    switch (err.type) {
-      case DioExceptionType.badResponse: // 服务端自定义错误体处理
-        {
-          final response = err.response;
-          final errorMessage = ErrorMessageModel.fromJson(response?.data);
-          switch (errorMessage.code) {
-            case 401: // 401 未登录
-              _errorNoAuthLogout(); // 注销 并跳转到登录页面
-              break;
-            case 404:
-              break;
-            case 500:
-              break;
-            case 502:
-              break;
-            case 1001:
-              break;
-            default:
-              break;
-          }
-          Loading.error(errorMessage.msg);
-        }
-        break;
-      case DioExceptionType.unknown:
-        {
-          final response = err.response;
-          final errorMessage = ErrorMessageModel.fromJson(response?.data);
-          Loading.error(errorMessage.msg);
-        }
-        break;
-      case DioExceptionType.cancel:
-        break;
-      case DioExceptionType.connectionTimeout:
-        break;
-      default:
-        break;
-    }
-    DioException errNext = err.copyWith(error: exception);
-    // err.error = exception;
-    handler.next(errNext);
-  }
+//   @override
+//   Future<void> onError(
+//       DioException err, ErrorInterceptorHandler handler) async {
+//     final exception = HttpException(err.message ?? "error message");
+//     switch (err.type) {
+//       case DioExceptionType.badResponse: // 服务端自定义错误体处理
+//         {
+//           final response = err.response;
+//           final errorMessage = ErrorMessageModel.fromJson(response?.data);
+//           switch (errorMessage.code) {
+//             case 401: // 401 未登录
+//               _errorNoAuthLogout(); // 注销 并跳转到登录页面
+//               break;
+//             case 404:
+//               break;
+//             case 500:
+//               break;
+//             case 502:
+//               break;
+//             case 1001:
+//               break;
+//             default:
+//               break;
+//           }
+//           Loading.error(errorMessage.msg);
+//         }
+//         break;
+//       case DioExceptionType.unknown:
+//         {
+//           final response = err.response;
+//           final errorMessage = ErrorMessageModel.fromJson(response?.data);
+//           Loading.error(errorMessage.msg);
+//         }
+//         break;
+//       case DioExceptionType.cancel:
+//         break;
+//       case DioExceptionType.connectionTimeout:
+//         break;
+//       default:
+//         break;
+//     }
+//     DioException errNext = err.copyWith(error: exception);
+//     // err.error = exception;
+//     handler.next(errNext);
+//   }
 }

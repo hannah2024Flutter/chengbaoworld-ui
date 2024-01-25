@@ -1,5 +1,7 @@
 import 'dart:convert';
+import 'package:castleworld/common/routers/app_routes.dart';
 import 'package:get/get.dart';
+import '../config/constants.dart';
 import '../model/user/user_model.dart';
 import '../util/storage.dart';
 
@@ -66,7 +68,7 @@ class UserService extends GetxService{
   /// 检查是否登录
   Future<bool> checkIsLogin() async {
     if (_isLogin.value == false) {
-      await Get.toNamed(RouteNames.main);
+      await Get.toNamed(AppRoutes.main);
       return false;
     }
     return true;
