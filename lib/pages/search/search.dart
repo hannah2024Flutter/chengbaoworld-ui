@@ -32,7 +32,7 @@ class _SearchPageState extends State<SearchPage> {
             top: 0,
             left: 0,
             right: 0,
-            bottom: MediaQuery.of(context).size.height - 152,
+            bottom: MediaQuery.of(context).size.height - 200,
             child: _bgpic(),
           ),
           Align(
@@ -62,10 +62,13 @@ class _SearchPageState extends State<SearchPage> {
 
   Widget _bgpic() {
     return Container(
+      width: MediaQuery.of(context).size.width,
+      height: 151,
       decoration: const BoxDecoration(
         image: DecorationImage(
           fit: BoxFit.cover, // 图片自适应填满容器且保持宽高比不变
-          image: AssetImage('assets/images/home-bg.png'), // 替换为您的背景图片资源路径
+          image:
+              AssetImage('assets/images/bg_home_homebg.webp'), // 替换为您的背景图片资源路径
         ),
       ),
     );

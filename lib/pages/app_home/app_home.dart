@@ -1,5 +1,6 @@
 import 'package:castleworld/config/Utils.dart';
 import 'package:castleworld/pages/product_detail/product_detail.dart';
+import 'package:castleworld/pages/search/search.dart';
 import 'package:flutter/material.dart';
 
 import '../home/home.dart';
