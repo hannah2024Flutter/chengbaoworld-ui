@@ -9,11 +9,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
+import 'common/services/http_service.dart';
+import 'common/services/user_service.dart';
 import 'common/util/storage.dart';
+import 'global.dart';
 import 'pages/search/search.dart';
 
 void main() {
-  Storage().init();
+  Global.init();
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
     statusBarColor: Colors.transparent,
   ));
