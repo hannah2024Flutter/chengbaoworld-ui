@@ -1,4 +1,5 @@
 import 'package:castleworld/config/Utils.dart';
+import 'package:castleworld/pages/product_detail/product_detail.dart';
 import 'package:flutter/material.dart';
 
 import '../home/home.dart';
@@ -10,7 +11,7 @@ class AppHome extends StatefulWidget {
   State<AppHome> createState() => _AppHomeState();
 }
 
-class _AppHomeState extends State<AppHome> with SingleTickerProviderStateMixin{
+class _AppHomeState extends State<AppHome> with SingleTickerProviderStateMixin {
   late TabController _controller;
   final ValueNotifier<int> selectIndex = ValueNotifier(0);
   @override
@@ -18,12 +19,14 @@ class _AppHomeState extends State<AppHome> with SingleTickerProviderStateMixin{
     _controller = TabController(length: 4, vsync: this);
     super.initState();
   }
+
   @override
   void dispose() {
     selectIndex.dispose();
     _controller.dispose();
     super.dispose();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,9 +37,11 @@ class _AppHomeState extends State<AppHome> with SingleTickerProviderStateMixin{
           Home(),
           Container(
             color: Colors.amber,
-          ), Container(
+          ),
+          Container(
             color: Colors.blue,
-          ), Container(
+          ),
+          Container(
             color: Colors.red,
           ),
         ],
@@ -44,11 +49,11 @@ class _AppHomeState extends State<AppHome> with SingleTickerProviderStateMixin{
       bottomNavigationBar: ValueListenableBuilder(
         valueListenable: selectIndex,
         builder: (BuildContext context, int value, Widget? child) {
-          return  BottomNavigationBar(
+          return BottomNavigationBar(
             currentIndex: value,
             landscapeLayout: BottomNavigationBarLandscapeLayout.centered,
             type: BottomNavigationBarType.fixed,
-            onTap:(i){
+            onTap: (i) {
               selectIndex.value = i;
               _controller.animateTo(i);
             },
@@ -106,10 +111,8 @@ class _AppHomeState extends State<AppHome> with SingleTickerProviderStateMixin{
                 ),
               ),
             ],
-
           );
         },
-
       ),
     );
   }
