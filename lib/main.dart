@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
             unselectedLabelStyle: TextStyle(fontSize: 9)),
         useMaterial3: true,
       ),
-      home: ProductDetail(),
+      home: AppHome(),
     );
   }
 }
