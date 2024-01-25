@@ -36,8 +36,7 @@ class _AppHomeState extends State<AppHome> with SingleTickerProviderStateMixin {
         children: [
           Home(),
           Container(
-            child: SearchPage(),
-            //color: Colors.amber,
+            color: Colors.amber,
           ),
           Container(
             color: Colors.blue,
