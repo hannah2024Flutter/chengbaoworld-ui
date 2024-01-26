@@ -1,7 +1,9 @@
 import 'package:castleworld/config/Utils.dart';
 import 'package:castleworld/pages/product_detail/product_detail.dart';
 import 'package:castleworld/pages/search/search.dart';
+import 'package:castleworld/pages/store_manager/store_manager.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../home/home.dart';
 
@@ -44,6 +46,14 @@ class _AppHomeState extends State<AppHome> with SingleTickerProviderStateMixin {
           ),
           Container(
             color: Colors.red,
+            child: InkWell(
+              onTap: () {
+                Get.to(StoreManager());
+              },
+              child: Center(
+                child: Text("店长中心"),
+              ),
+            ),
           ),
         ],
       ),
