@@ -31,7 +31,7 @@ class UserApi {
   static Future<UserModel> smsLogin(
       {required String mobile, required String smsCode}) async {
     var res = await HttpService.to.post(
-      'api/login/smsLogin',
+      '/api/login/smsLogin',
       data: {'mobile': mobile, 'sms_code': smsCode},
     );
     return UserModel.fromJson(res);
