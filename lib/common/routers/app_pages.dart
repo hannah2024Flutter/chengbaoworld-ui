@@ -1,5 +1,8 @@
 import 'package:castleworld/common/routers/app_routes.dart';
 import 'package:castleworld/pages/app_home/app_home.dart';
+import 'package:castleworld/pages/login/login.dart';
+import 'package:castleworld/pages/login/prv_agreement.dart';
+import 'package:castleworld/pages/login/view.dart';
 import 'package:get/get.dart';
 
 class AppPages{
@@ -18,6 +21,8 @@ class AppPages{
         popGesture: true,
       );
   static final routes = <GetPage>[
-    _pageBuilder(name: AppRoutes.main, page: ()=>AppHome())
+    _pageBuilder(name: AppRoutes.main, page: ()=>AppHome()),
+    _pageBuilder(name: AppRoutes.login, page: ()=>LoginPage()),
+    _pageBuilder(name: AppRoutes.prvAgreemeet, page: ()=>PrvAgreement()),
   ];
 }
