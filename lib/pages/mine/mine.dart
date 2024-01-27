@@ -1,3 +1,4 @@
+import 'package:castleworld/common/routers/app_routes.dart';
 import 'package:castleworld/common/services/user_service.dart';
 import 'package:castleworld/config/Utils.dart';
 import 'package:castleworld/pages/mine/controller/mine_controller.dart';
@@ -250,6 +251,7 @@ class _MineState extends State<Mine> {
               InkWell(
                 onTap: () {
                   //todo
+                  Get.toNamed(AppRoutes.teamDetails);
                 },
                 child: Container(
                   decoration: BoxDecoration(
