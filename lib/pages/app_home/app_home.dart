@@ -1,4 +1,5 @@
 import 'package:castleworld/config/Utils.dart';
+import 'package:castleworld/pages/mine/mine.dart';
 import 'package:castleworld/pages/product_detail/product_detail.dart';
 import 'package:castleworld/pages/search/search.dart';
 import 'package:flutter/material.dart';
@@ -42,9 +43,7 @@ class _AppHomeState extends State<AppHome> with SingleTickerProviderStateMixin {
           Container(
             color: Colors.blue,
           ),
-          Container(
-            color: Colors.red,
-          ),
+          const Mine(),
         ],
       ),
       bottomNavigationBar: ValueListenableBuilder(
