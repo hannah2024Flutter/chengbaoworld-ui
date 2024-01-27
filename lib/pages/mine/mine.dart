@@ -1,9 +1,12 @@
+import 'package:castleworld/common/services/user_service.dart';
 import 'package:castleworld/config/Utils.dart';
-import 'package:castleworld/pages/mine/widgets/mine_common_function_widget.dart';
+import 'package:castleworld/pages/mine/controller/mine_controller.dart';
 import 'package:castleworld/pages/mine/widgets/mine_center_widget.dart';
+import 'package:castleworld/pages/mine/widgets/mine_common_function_widget.dart';
 import 'package:castleworld/pages/mine/widgets/mine_function_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 
 /// 创建时间：2024/1/26
 /// 作者：hannah
@@ -17,6 +20,14 @@ class Mine extends StatefulWidget {
 }
 
 class _MineState extends State<Mine> {
+  MineController dataController = Get.put(MineController());
+
+  @override
+  initState() {
+    super.initState();
+    dataController.onInit();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -69,19 +80,26 @@ class _MineState extends State<Mine> {
       children: [
         ClipRRect(
           borderRadius: BorderRadius.all(Radius.circular(62.r)),
-          child: Image.asset(
-            getImgPath('bg_mine_title'),
-            fit: BoxFit.fill,
-            width: 62.r,
-            height: 62.r,
-          ),
+          child: UserService().userInfo.avatar?.isNotEmpty == true
+              ? Image.network(
+                  UserService().userInfo.avatar ?? '',
+                  fit: BoxFit.fill,
+                  width: 62.r,
+                  height: 62.r,
+                )
+              : Image.asset(
+                  getImgPath('ic_mine_image_default'),
+                  fit: BoxFit.fill,
+                  width: 62.r,
+                  height: 62.r,
+                ),
         ),
         SizedBox(width: 12.w),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Test',
+              UserService().userInfo.nickname ?? '暂无数据',
               style: TextStyle(
                 // fontFamily: 'yf',
                 fontSize: 16.sp,
@@ -93,7 +111,7 @@ class _MineState extends State<Mine> {
             Row(
               children: [
                 Text(
-                  'ID:001',
+                  'ID:${UserService().userInfo.id ?? '暂无数据'}',
                   style: TextStyle(fontSize: 12.sp, color: const Color(0xff7b7b7b)),
                 ),
                 SizedBox(width: 4.w),
