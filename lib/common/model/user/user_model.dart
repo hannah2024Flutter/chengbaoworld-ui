@@ -58,7 +58,7 @@ class UserInfo {
   int? agentLevel;
   int? countPool;
   int? childs;
-  double? product;
+  int? product;
   int? teamTotal;
   TjrInfo? tjrInfo;
   String? avatars;
