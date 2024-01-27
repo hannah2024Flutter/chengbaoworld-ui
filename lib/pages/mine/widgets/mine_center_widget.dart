@@ -1,6 +1,8 @@
+import 'package:castleworld/common/routers/app_routes.dart';
 import 'package:castleworld/config/Utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 
 /// 创建时间：2024/1/27
 /// 作者：hannah
@@ -17,7 +19,7 @@ class MineCenterWidget extends StatelessWidget {
         direction: Axis.horizontal,
         children: [
           _getMineCenterItemWidget('bg_mine_store', '我的仓库', '边赚边玩', () {
-            //todo
+            Get.toNamed(AppRoutes.mineStore);
           }),
           SizedBox(width: 13.w),
           _getMineCenterItemWidget('bg_mine_transfer', '转赠中心', '领腾讯VIP', () {
@@ -37,7 +39,9 @@ class MineCenterWidget extends StatelessWidget {
     return Expanded(
       flex: 1,
       child: GestureDetector(
-        onTap: function.call(),
+        onTap: () {
+          function.call();
+        },
         child: Stack(
           alignment: Alignment.centerLeft,
           children: [

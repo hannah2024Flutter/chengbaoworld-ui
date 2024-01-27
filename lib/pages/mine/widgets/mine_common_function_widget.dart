@@ -90,7 +90,9 @@ class MineCommonFunctionWidget extends StatelessWidget {
     return Expanded(
       flex: 1,
       child: GestureDetector(
-        onTap: function.call(),
+        onTap: () {
+          function.call();
+        },
         child: Column(
           children: [
             Image.asset(

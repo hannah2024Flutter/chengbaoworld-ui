@@ -27,7 +27,7 @@ class _MineState extends State<Mine> {
             children: [
               ///背景
               Image.asset(
-                getImgPath('bg_mine_title', sux: '.png'),
+                getImgPath('bg_mine_title'),
                 fit: BoxFit.fill,
                 width: double.infinity,
                 height: 250.h,
@@ -70,7 +70,7 @@ class _MineState extends State<Mine> {
         ClipRRect(
           borderRadius: BorderRadius.all(Radius.circular(62.r)),
           child: Image.asset(
-            getImgPath('bg_mine_title', sux: '.png'),
+            getImgPath('bg_mine_title'),
             fit: BoxFit.fill,
             width: 62.r,
             height: 62.r,
@@ -150,7 +150,9 @@ class _MineState extends State<Mine> {
     return Expanded(
       flex: 1,
       child: GestureDetector(
-        onTap: function.call(),
+        onTap: () {
+          function.call();
+        },
         child: Stack(
           alignment: Alignment.center,
           children: [
@@ -259,7 +261,7 @@ class _MineState extends State<Mine> {
               SizedBox(width: 5.w),
               _getMineTeamsItemWidget('今日新增', '34人'),
               SizedBox(width: 5.w),
-              _getMineTeamsItemWidget('累计产出宝石', '=54653'),
+              _getMineTeamsItemWidget('累计产出宝石', '54653', leftImg: 'ic_mine_equal'),
             ],
           ),
           SizedBox(height: 12.h),
@@ -284,7 +286,7 @@ class _MineState extends State<Mine> {
     );
   }
 
-  Widget _getMineTeamsItemWidget(String title, String content) {
+  Widget _getMineTeamsItemWidget(String title, String content, {String? leftImg}) {
     return Expanded(
       flex: 1,
       child: Container(
@@ -296,7 +298,7 @@ class _MineState extends State<Mine> {
         padding: EdgeInsets.only(top: 10.h, bottom: 10.h),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Text(
               title,
@@ -307,12 +309,26 @@ class _MineState extends State<Mine> {
               ),
             ),
             SizedBox(height: 5.h),
-            Text(
-              content,
-              style: TextStyle(
-                fontSize: 16.sp,
-                color: const Color(0xff333333),
-              ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Visibility(
+                  visible: leftImg?.isNotEmpty == true,
+                  child: Image.asset(
+                    getImgPath(leftImg ?? ''),
+                    fit: BoxFit.fill,
+                    width: 9.w,
+                    height: 6.w,
+                  ),
+                ),
+                Text(
+                  content,
+                  style: TextStyle(
+                    fontSize: 16.sp,
+                    color: const Color(0xff333333),
+                  ),
+                ),
+              ],
             ),
           ],
         ),
