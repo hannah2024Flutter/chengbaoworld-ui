@@ -1,6 +1,8 @@
 import 'package:castleworld/common/routers/app_routes.dart';
 import 'package:castleworld/config/Utils.dart';
+import 'package:castleworld/pages/mine/my_social_info_dialog.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
@@ -19,12 +21,26 @@ class MineCenterWidget extends StatelessWidget {
         direction: Axis.horizontal,
         children: [
           _getMineCenterItemWidget('bg_mine_store', '我的仓库', '边赚边玩', () {
-            Get.toNamed(AppRoutes.mineStore);
+            Get.toNamed(AppRoutes.myStore);
           }),
           SizedBox(width: 13.w),
-          _getMineCenterItemWidget('bg_mine_transfer', '转赠中心', '领腾讯VIP', () {
-            //todo
-          }),
+          _getMineCenterItemWidget(
+            'bg_mine_transfer',
+            '转赠中心',
+            '领腾讯VIP',
+            () {
+              //todo
+              showModalBottomSheet(
+                backgroundColor: Colors.transparent,
+                barrierColor: const Color(0xb3000000),
+                isScrollControlled: true,
+                context: context,
+                builder: (BuildContext context) {
+                  return const MySocialInfoDialog();
+                },
+              );
+            },
+          ),
         ],
       ),
     );

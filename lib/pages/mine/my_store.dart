@@ -1,22 +1,21 @@
 import 'package:castleworld/config/Utils.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 /// 创建时间：2024/1/27
 /// 作者：hannah
-/// 描述：
+/// 描述：我的仓库
 
-class MineStore extends StatefulWidget {
-  const MineStore({super.key});
+class MyStore extends StatefulWidget {
+  const MyStore({super.key});
 
   @override
   State<StatefulWidget> createState() {
-    return _MineStoreState();
+    return _MyStoreState();
   }
 }
 
-class _MineStoreState extends State<MineStore> {
+class _MyStoreState extends State<MyStore> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

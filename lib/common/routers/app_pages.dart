@@ -1,9 +1,8 @@
 import 'package:castleworld/common/routers/app_routes.dart';
 import 'package:castleworld/pages/app_home/app_home.dart';
-import 'package:castleworld/pages/login/login.dart';
 import 'package:castleworld/pages/login/prv_agreement.dart';
 import 'package:castleworld/pages/login/view.dart';
-import 'package:castleworld/pages/mine/mine_store.dart';
+import 'package:castleworld/pages/mine/my_store.dart';
 import 'package:get/get.dart';
 
 class AppPages {
@@ -25,6 +24,6 @@ class AppPages {
     _pageBuilder(name: AppRoutes.main, page: () => AppHome()),
     _pageBuilder(name: AppRoutes.login, page: () => LoginPage()),
     _pageBuilder(name: AppRoutes.prvAgreemeet, page: () => PrvAgreement()),
-    _pageBuilder(name: AppRoutes.mineStore, page: () => const MineStore()),
+    _pageBuilder(name: AppRoutes.myStore, page: () => const MyStore()),
   ];
 }
