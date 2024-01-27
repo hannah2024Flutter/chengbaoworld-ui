@@ -1,4 +1,5 @@
 import 'package:castleworld/config/Utils.dart';
+import 'package:castleworld/pages/mine/invite_dialog.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -26,7 +27,15 @@ class MineFunctionWidget extends StatelessWidget {
         direction: Axis.horizontal,
         children: [
           _getMineActionItem('ic_mine_action_invite', '邀请好友', () {
-            //todo
+            showModalBottomSheet(
+              backgroundColor: Colors.transparent,
+              barrierColor: const Color(0xb3000000),
+              isScrollControlled: true,
+              context: context,
+              builder: (BuildContext context) {
+                return const InviteDialog();
+              },
+            );
           }),
           _getMineActionItem('ic_mine_action_auth', '实名认证', () {
             //todo

@@ -1,7 +1,6 @@
 import 'package:castleworld/common/routers/app_routes.dart';
 import 'package:castleworld/config/Utils.dart';
 import 'package:castleworld/pages/mine/my_social_info_dialog.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';

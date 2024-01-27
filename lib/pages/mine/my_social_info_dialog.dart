@@ -1,7 +1,9 @@
 import 'package:castleworld/config/Utils.dart';
+import 'package:castleworld/pages/mine/controller/my_social_info_dialog_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 
 /// 创建时间：2024/1/27
 /// 作者：hannah
@@ -15,6 +17,14 @@ class MySocialInfoDialog extends StatefulWidget {
 }
 
 class _MySocialInfoDialogState extends State<MySocialInfoDialog> {
+  MySocialInfoDialogController dataController = Get.put(MySocialInfoDialogController());
+
+  @override
+  initState() {
+    super.initState();
+    dataController.onInit();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -27,23 +37,25 @@ class _MySocialInfoDialogState extends State<MySocialInfoDialog> {
       ),
       height: 455.h,
       padding: EdgeInsets.only(left: 14.w, right: 14.w, top: 16.h, bottom: 16.h),
-      child: SingleChildScrollView(
-        child: Column(
-          children: [
-            _titleView(),
+      child: Obx(
+        () => SingleChildScrollView(
+          child: Column(
+            children: [
+              _titleView(),
 
-            ///微信号
-            _wxView(),
+              ///微信号
+              _wxView(),
 
-            ///QQ号
-            _qqView(),
+              ///QQ号
+              _qqView(),
 
-            ///邀请
-            _inviteView(),
+              ///邀请
+              _inviteView(),
 
-            ///保存
-            _saveBtn(),
-          ],
+              ///保存
+              _saveBtn(),
+            ],
+          ),
         ),
       ),
     );
@@ -99,7 +111,7 @@ class _MySocialInfoDialogState extends State<MySocialInfoDialog> {
           Expanded(
             child: TextField(
               style: TextStyle(
-                color: const Color(0xFF333333),
+                color: const Color(0xFF0E8AFD),
                 fontSize: 14.sp,
               ),
               textAlign: TextAlign.end,
@@ -113,9 +125,12 @@ class _MySocialInfoDialogState extends State<MySocialInfoDialog> {
                 counterText: '',
               ),
               inputFormatters: [
-                FilteringTextInputFormatter('0-9a-zA-Z_', allow: true),
+                FilteringTextInputFormatter(RegExp('[0-9a-zA-Z_]'), allow: true),
                 LengthLimitingTextInputFormatter(20),
               ],
+              onChanged: (text) {
+                dataController.wxNum.value = text;
+              },
             ),
           ),
         ],
@@ -144,7 +159,7 @@ class _MySocialInfoDialogState extends State<MySocialInfoDialog> {
           Expanded(
             child: TextField(
               style: TextStyle(
-                color: const Color(0xFF333333),
+                color: const Color(0xFF0E8AFD),
                 fontSize: 14.sp,
               ),
               textAlign: TextAlign.end,
@@ -158,9 +173,12 @@ class _MySocialInfoDialogState extends State<MySocialInfoDialog> {
                 counterText: '',
               ),
               inputFormatters: [
-                FilteringTextInputFormatter('0-9', allow: true),
+                FilteringTextInputFormatter(RegExp('[0-9]'), allow: true),
                 LengthLimitingTextInputFormatter(20),
               ],
+              onChanged: (text) {
+                dataController.qqNum.value = text;
+              },
             ),
           ),
         ],
@@ -188,9 +206,12 @@ class _MySocialInfoDialogState extends State<MySocialInfoDialog> {
                 ),
               ),
               InkWell(
-                onTap: () {},
+                onTap: () {
+                  dataController.isOpenMe.value = !dataController.isOpenMe.value;
+                },
                 child: Image.asset(
-                  getImgPath('btn_switch_open'),
+                  getImgPath(
+                      dataController.isOpenMe.value ? 'btn_switch_open' : 'btn_switch_close'),
                   fit: BoxFit.fill,
                   width: 52.w,
                   height: 26.w,
@@ -210,9 +231,12 @@ class _MySocialInfoDialogState extends State<MySocialInfoDialog> {
                 ),
               ),
               InkWell(
-                onTap: () {},
+                onTap: () {
+                  dataController.isOpenFriend.value = !dataController.isOpenFriend.value;
+                },
                 child: Image.asset(
-                  getImgPath('btn_switch_close'),
+                  getImgPath(
+                      dataController.isOpenFriend.value ? 'btn_switch_open' : 'btn_switch_close'),
                   fit: BoxFit.fill,
                   width: 52.w,
                   height: 26.w,
@@ -226,24 +250,29 @@ class _MySocialInfoDialogState extends State<MySocialInfoDialog> {
   }
 
   Widget _saveBtn() {
-    return Container(
-      decoration: BoxDecoration(
-          gradient: const LinearGradient(colors: [
-            Color(0xff027FFD),
-            Color(0xff779DFF),
-          ]),
-          borderRadius: BorderRadius.all(Radius.circular(29.r))),
-      padding: EdgeInsets.only(top: 15.h, bottom: 15.h),
-      margin: EdgeInsets.only(top: 27.h, bottom: 10.h, left: 40.w, right: 40.w),
-      width: double.infinity,
-      child: Text(
-        "保存",
-        style: TextStyle(
-          color: Colors.white,
-          fontSize: 16.sp,
-          fontWeight: FontWeight.w500,
+    return InkWell(
+      onTap: () {
+        dataController.saveData();
+      },
+      child: Container(
+        decoration: BoxDecoration(
+            gradient: const LinearGradient(colors: [
+              Color(0xff027FFD),
+              Color(0xff779DFF),
+            ]),
+            borderRadius: BorderRadius.all(Radius.circular(29.r))),
+        padding: EdgeInsets.only(top: 15.h, bottom: 15.h),
+        margin: EdgeInsets.only(top: 27.h, bottom: 10.h, left: 40.w, right: 40.w),
+        width: double.infinity,
+        child: Text(
+          "保存",
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 16.sp,
+            fontWeight: FontWeight.w500,
+          ),
+          textAlign: TextAlign.center,
         ),
-        textAlign: TextAlign.center,
       ),
     );
   }
